@@ -29,6 +29,8 @@ addColumnNames <- function(unnamedData, fileColumnNames){
         unnamedData
 }
 
+#--------------------------
+# main script starts here
 
 # first combine the test and train data into three data frames
 xAll <- appendRows('test/x_test.txt', 'train/x_train.txt')
@@ -56,3 +58,6 @@ names(cleanData) <- names(xAll)
 
 cleanData[1,] <- xMeans
 cleanData[2,] <- xDeviations
+
+print(cleanData)
+
