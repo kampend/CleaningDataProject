@@ -11,7 +11,16 @@ xAll <- addColumnNames(xAll, 'features.txt')
 xMeans <- colMeans(xAll)
 
 # calculate the standard deviations
-xStandarDeviations <- apply(xAll, 2, sd)
+xStandardDeviations <- apply(xAll, 2, sd)
+
+# create the new dataset
+nColumns = as.numeric(ncol(xAll))
+
+cleanData <- as.data.frame(matrix(0, ncol = nColumns, nrow = 2))
+names(cleanData) <- names(xAll)
+
+cleanData[1,] <- xMeans
+cleanData[2,] <- xStandardDeviations
 
 
 
