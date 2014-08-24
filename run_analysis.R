@@ -1,3 +1,20 @@
+
+# first combine the test and train data into three data frames
+xAll <- appendRows('test/x_test.txt', 'train/x_train.txt')
+yAll <- appendRows(file1 = 'test/y_test.txt', file2 = 'train/y_train.txt')
+subjectAll <- appendRows(file1 = 'test/subject_test.txt', file2 = 'train/subject_train.txt')
+
+# next, add the titles to the x data frame
+xAll <- addColumnNames(xAll, 'features.txt')
+
+# calculate the means
+xMeans <- colMeans(xAll)
+
+# calculate the standard deviations
+xStandarDeviations <- apply(xAll, 2, sd)
+
+
+
 # appendRows appends the rows of data from file2 to the end of file1.
 # The function assumes that both files have the same number and type of columns
 
@@ -12,8 +29,8 @@ appendRows <- function(file1, file2) {
         dataAll <- rbind(dataTest, dataTrain)
 }
 
-# addName will take the string in the second column of fileTitles and insert it at the top
-# of the corresponding ROW in the dataNeedingTitles data frame.  fileTitles must have as many 
+# addColumnNames will take the string in the second column of fileColumnNames and make it the 
+# title of the corresponding ROW in the unnamedData data frame.  fileTitles must have as many 
 # rows as dataNeedingTitles has columns.
 
 addColumnNames <- function(unnamedData, fileColumnNames){
@@ -27,14 +44,6 @@ addColumnNames <- function(unnamedData, fileColumnNames){
         unnamedData
 }
 
-
-# first combine the test and train data into three data frames
-xAll <- appendRows('test/x_test.txt', 'train/x_train.txt')
-yAll <- appendRows(file1 = 'test/y_test.txt', file2 = 'train/y_train.txt')
-subjectAll <- appendRows(file1 = 'test/subject_test.txt', file2 = 'train/subject_train.txt')
-
-# next, add the titles to the x data frame
-xAll <- addColumnNames(xAll, 'features.txt')
 
 
 
